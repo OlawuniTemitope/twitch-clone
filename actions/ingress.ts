@@ -1,5 +1,4 @@
 "use server"
-
 import { getSelf } from "@/lib/auth-service";
 import { db } from "@/lib/db";
 import {
@@ -53,16 +52,17 @@ export const CreateIngress = async (ingressType:IngressInput) => {
   if(ingressType === IngressInput.WHIP_INPUT){
     options.enableTranscoding=true
   } else { 
-
+//@ts-ignore
     options.video = {
-      // name: self.id,
+      name: self.id,
     source:TrackSource.CAMERA,
     encodingOptions:{
       
     value: IngressVideoEncodingPreset.H264_1080P_30FPS_3_LAYERS,
     case:"preset"
-    }
+    },
      };
+     //@ts-ignore
      options.audio ={
       source:TrackSource.MICROPHONE,
       encodingOptions:{
